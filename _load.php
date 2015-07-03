@@ -3,6 +3,10 @@
 Plugin Name: CasePress. Печатная форма исходящего письма
 Description: Позволяет распечатывать сопроводительные письма.
 License: MIT
+Plugin URI: https://github.com/systemo-biz/print_form_outgoing_mail_cp
+GitHub Plugin URI: https://github.com/systemo-biz/print_form_outgoing_mail_cp
+GitHub Branch: master
+Version: 20150701-1
 */
 
 class Print_Form_Order_Repair_CP_Singleton {
