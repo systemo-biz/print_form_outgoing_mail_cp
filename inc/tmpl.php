@@ -31,34 +31,45 @@
         
             <div id="print_wrapper" class="container">
                 <p id="print"><a href="javascript:window.print()">Печать</a></p>
+                <hr>
                 <header class="row">
                     <div class="our_company_data col-xs-6">
-                        <img src="<?php echo plugins_url( 'logo.png', __FILE__ ); ?>" alt="">
-                        <p class="reg_num">Регистрационный номер № <?php the_ID(); ?> от <?php  the_date() ?></p>
+                        <img src="<?php echo plugins_url( 'logo.png', __FILE__ ); ?>" style="width: 200px;">
+                        <div><small>Сайт: <a href="http://systemo.biz">systemo.biz</a></small></div>
+                        <div><small>Телефон: <a href="tel:+73452602654">+7 (3452) 602654</a></small></div>
+                        <div><small>Электронная почта: <a href="email:s@systemo.biz">s@systemo.biz</a></small></div>
+                        <div><small>Почтовый адрес: <br/>625039, г. Тюмень, а/я 6490</small></div>
+                        <div class="reg_num"><small>Исх. № <?php the_ID(); ?> от <?php  the_date() ?></small></div>
                     </div>
                     <div class="client_wrapper col-xs-6">
                         <strong>Адресат:</strong>
+                        <?php
+                            $reporter = get_post_meta($post->ID, 'reporter', true);
+                            $reporter = get_post($reporter[0]);
+                            
+                        ?>
                         <br />
-                        <ul>
-                            <li>Имя контактного лица: <?php echo get_post_meta($post->ID, 'contact_name', true); ?></li>
-                            <li>Телефон основной: <?php echo get_post_meta($post->ID, 'tel', true); ?></li>
-                            <li>Дополнительные контактные данные: <?php echo get_post_meta($post->ID, 'contact_ext', true); ?></li>
-                        </ul>
+                        <div>
+                            <div>
+                                <small>Наименование:</small><br><?php echo $reporter->post_title; ?>
+                            </div>
+                            <div>
+                                <small>Почтовый адрес:</small><br><?php echo get_post_meta($reporter->ID, 'postadress', true); ?>
+                            </div>
+                        </div>
                     </div>
                 </header>
+                <hr>
                 <main class="clearfix">
-                    <div>
-                        <strong>Уважаемый</strong>
-                    </div>
-
                     <div id="text_letter">
-                        <p><?php echo $post->post_content; ?></p>
+                        <?php echo get_post_meta($post->ID, 'mail_text', true); ?>
                     </div>
                 </main>
+                <hr/>
                 <footer id="sign_responsible">
-                    <p>Подпись: </p>
-                    <hr/>
+                    <p>С уважением<br>компания Системо</p>
                 </footer>
+                <hr/>
             </div>
         
         <?php endwhile; ?>
